@@ -1,0 +1,8 @@
+prefix=/home/tim/catkin_ws/install
+
+Name: gaze_tracking
+Description: Description of gaze_tracking
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 
