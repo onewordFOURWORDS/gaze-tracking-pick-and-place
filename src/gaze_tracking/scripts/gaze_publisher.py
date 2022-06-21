@@ -22,7 +22,10 @@ def get_gaze():
         receive_gaze_data(s)
         # This might be a bad way to get this
         # If we end up requesting different data from the server these indexes might change
-        data = receive_gaze_data(s)
+        try:
+            data = receive_gaze_data(s)
+        except IndexError:
+            print("Bad Data Message | IGNORE")
         msg.BPOGX = data[0]
         msg.BPOGY = data[1]
         msg.BPOGV = data[2]
@@ -57,7 +60,7 @@ def request_gaze_data(s):
     """
     # Send command to request certain data
     s.send(str.encode('<SET ID="ENABLE_SEND_BLINK" STATE="1" />\r\n'))
-    s.send(str.encode('<SET ID="ENABLE_SEND_POG_BEST" STATE="1" />\r\n'))
+    s.send(str.encode('<SET ID="ENABLE_SEND_POG_AAC" STATE="1" />\r\n'))
     # Enable the server to return the data requested
     s.send(str.encode('<SET ID="ENABLE_SEND_DATA" STATE="1" />\r\n'))
 
