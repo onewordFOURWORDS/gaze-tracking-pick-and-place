@@ -2,8 +2,11 @@
 
 Gaze based robotic pick and place application.
 
+
 ROS Noetic
 
 UR5E Robotic Arm
 
 Ubuntu 20.04
+
+Intel Realsense D415
