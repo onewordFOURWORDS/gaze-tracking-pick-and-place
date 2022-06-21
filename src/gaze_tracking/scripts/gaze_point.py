@@ -57,6 +57,8 @@ def main():
 			# cv.ellipse(img, center, axes, angle, a0, a1, color, thickness)
 			marked_image = cv.ellipse(rgb_img,center, axes ,angle ,0 ,360 ,blue ,thickness)
 
+			marked_image = marked_image[60:410, 0:640]
+
 			# convert it to ros msg and publish it
 			img_msg = CvBridge().cv2_to_imgmsg(marked_image, encoding="rgb8")
 
