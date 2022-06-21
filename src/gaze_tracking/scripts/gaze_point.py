@@ -43,7 +43,7 @@ def main():
 
 	# set the loop frequenc
 	rate = rospy.Rate(10)
-	while not rospy.is_shutelow shows the red channel of the blob. You notice the brightness of the red jacket in the background.down():
+	while not rospy.is_shutdown():
 		#print("Image Received?", img_received, "Data Received?", data_received)
 		# make sure we process if the camera has started streaming images
 		if img_received & data_received:
