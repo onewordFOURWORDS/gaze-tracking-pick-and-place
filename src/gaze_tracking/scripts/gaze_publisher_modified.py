@@ -74,7 +74,87 @@ def receive_gaze_data(s):
     rxdat = s.recv(1024)  # Receive data from server
     rxdat = bytes.decode(rxdat)
 
+    # Split each data point into a sepdef server_connection(ip, port):
+    """
+    Connect to the server address and return the socket connection variable
+    :param ip: server ip address as a string
+    :param port: server port
+    :return: socket connection variable
+    """
+    # Host machine IP/IP address of Windows VM
+    host = ip
+    # Gazepoint Port
+    port = port
+    address = (host, port)
+    # Connect to Gazepoint control server on Windows VM
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(address)
+    return s
+
+
+def request_gaze_data(s):
+    """
+    Commands sent to Gazepoint Control server to request certain data using the Gazepoint API
+    :param s: socket connection variable
+    :return: none
+    """
+    # Send command to request certain data
+    s.send(str.encode('<SET ID="ENABLE_SEND_BLINK" STATE="1" />\r\n'))
+    s.send(str.encode('<SET ID="ENABLE_SEND_POG_BEST" STATE="1" />\r\n'))
+    # Enable the server to return the data requested
+    s.send(str.encode('<SET ID="ENABLE_SEND_DATA" STATE="1" />\r\n'))
+
+
+def receive_gaze_data(s):
+    """
+    Receive and clean the data from the Gazepoint Control server.
+    :param s: socket connection variable
+    :return: rxdat (cleaned gaze data)
+    """
+    # Regex that only includes numbers and .
+    numbers = re.compile(r'\d+(?:\.\d+)?')
+
+    newlist = []
+    rxdat = s.recv(1024)  # Receive data from server
+    rxdat = bytes.decode(rxdat)
+
     # Split each data point into a separate item
+    rxdat = rxdat.split()
+    # Remove the first and last item in the list
+    # Removes '<REC' and '/>' items
+    rxdat = rxdat[1:-1]
+
+    # Convert to numpy array
+    rxdat = np.asarray(rxdat)
+    # make array vertical + converts into 2d array
+    rxdat = rxdat.reshape(-1, 1)
+
+    # Converts to pure float values and appends to newlist
+    try:
+        for i in range(len(rxdat)):
+            temp = (numbers.findall(rxdat[i][0]))
+            temp = float(temp[0])
+            newlist.append(temp)
+    except:
+        print("ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR")
+        print(rxdat)
+        print("ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR")
+
+    return newlist
+
+
+def ignore_x_msgs(s, num):
+    """
+    Ignore the first 'num' of messages received from the Gazepoint control server. The first
+    several messages are not actual gaze tracking data.
+    :param s: socket connection variable
+    :param num: number of messages to ignore
+    :return: none
+    """
+    # Do nothing with the first couple of items received. Not gaze tracking data
+    for i in range(num):
+        s.recv(1024)
+arate item
     rxdat = rxdat.split()
     # Remove the first and last item in the list
     # Removes '<REC' and '/>' items
