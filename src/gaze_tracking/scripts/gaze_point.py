@@ -25,9 +25,11 @@ def get_image(ros_img):
 def get_data(data):
 	global BPOGX
 	global BPOGY
+	global BPOGV
 	global data_received
 	BPOGX = data.BPOGX
 	BPOGY = data.BPOGY
+	BPOGV = data.BPOGV
 	data_received = True
 
 
@@ -47,17 +49,28 @@ def main():
 		#print("Image Received?", img_received, "Data Received?", data_received)
 		# make sure we process if the camera has started streaming images
 		if img_received & data_received:
+			# image is 480 x 640
+			# crop the image into a 16:9 resolution
+			cropped_img = rgb_img[55:415, 0:640]
 
-			blue = (255, 0, 0) # color of the circle
-			center = (int(480*BPOGX), int(640*BPOGY)) # center circle on gaze spot
-			axes = (5,5) # circle size
-			angle = 0 # angle of the ellipse doesnt matter since this uses a circle
-			thickness = 2 # line thickness of the cirlce
 			# Draw a circle on the image based on the gaze location
+			green = (0, 255, 0) # color of the circle
+			center = (int(640*BPOGX), int(350*BPOGY)) # center circle on gaze spot
+			axes = (3,3) # circle size
+			angle = 0 # angle of the ellipse doesnt matter since this uses a circle
+			thickness = -1 # line thickness of the cirlce
 			# cv.ellipse(img, center, axes, angle, a0, a1, color, thickness)
-			marked_image = cv.ellipse(rgb_img,center, axes ,angle ,0 ,360 ,blue ,thickness)
+			marked_image = cv.ellipse(cropped_img, center, axes, angle, 0, 360, green, thickness)
 
-			marked_image = marked_image[60:410, 0:640]
+			# If gaze tracking is lost display a red circle as indication
+			if BPOGV == 0:
+				red = (255, 0, 0) # color of the circle
+				center = (10, 10) # center circle on gaze spot
+				axes = (5, 5) # circle size
+				angle = 0 # angle of the ellipse doesnt matter since this uses a circle
+				thickness = -1 # line thickness of the cirlce
+
+				marked_image = cv.ellipse(cropped_img, center, axes, angle, 0, 360, red, thickness)
 
 			# convert it to ros msg and publish it
 			img_msg = CvBridge().cv2_to_imgmsg(marked_image, encoding="rgb8")
