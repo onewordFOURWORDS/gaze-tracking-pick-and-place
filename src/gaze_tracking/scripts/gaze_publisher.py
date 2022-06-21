@@ -11,7 +11,7 @@ from gaze_tracking.msg import gazedata
 def get_gaze():
     pub = rospy.Publisher('/gaze_publisher', gazedata, queue_size=10)
     rospy.init_node('gaze_publisher', anonymous=True)
-    rate = rospy.Rate(60)  # 10hz
+    rate = rospy.Rate(58)  # 10hz
     msg = gazedata()
 
     s = server_connection('192.168.56.101', 4242)
@@ -22,10 +22,7 @@ def get_gaze():
         receive_gaze_data(s)
         # This might be a bad way to get this
         # If we end up requesting different data from the server these indexes might change
-        try:
-            data = receive_gaze_data(s)
-        except IndexError:
-            print("Bad Data Message | IGNORE")
+        data = receive_gaze_data(s)
         msg.BPOGX = data[0]
         msg.BPOGY = data[1]
         msg.BPOGV = data[2]
@@ -89,11 +86,15 @@ def receive_gaze_data(s):
     # make array vertical + converts into 2d array
     rxdat = rxdat.reshape(-1, 1)
 
-    # Converts to pure float values and appends to newlist
-    for i in range(len(rxdat)):
-        temp = (numbers.findall(rxdat[i][0]))
-        temp = float(temp[0])
-        newlist.append(temp)
+    try:
+        # Converts to pure float values and appends to newlist
+        for i in range(len(rxdat)):
+            temp = (numbers.findall(rxdat[i][0]))
+            temp = float(temp[0])
+            newlist.append(temp)
+    except IndexError:
+        print("Gazepoint Server fell behind | Data will be repeated until it catches up")
+
 
     return newlist
 
