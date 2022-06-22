@@ -69,3 +69,10 @@
 /home/tim/catkin_ws/build/gaze_tracking/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
 /home/tim/catkin_ws/build/gaze_tracking/CMakeFiles/gaze_tracking_gennodejs.dir
 /home/tim/catkin_ws/build/gaze_tracking/CMakeFiles/test.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/install/strip.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/install/local.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/install.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/list_install_components.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/rebuild_cache.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/edit_cache.dir
+/home/tim/catkin_ws/build/object_detection/CMakeFiles/test.dir

@@ -1,0 +1,6 @@
+roscore
+roslaunch realsense2_camera rs_camera.launch
+                            rs_rgbd.launch
+
+
+rosrun image_view image_view image:=/gaze_location_img

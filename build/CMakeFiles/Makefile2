@@ -55,12 +55,14 @@ CMAKE_BINARY_DIR = /home/tim/catkin_ws/build
 # The main recursive "all" target.
 all: gtest/all
 all: gaze_tracking/all
+all: object_detection/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: gaze_tracking/preinstall
+preinstall: object_detection/preinstall
 
 .PHONY : preinstall
 
@@ -72,6 +74,7 @@ clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: gaze_tracking/clean
+clean: object_detection/clean
 
 .PHONY : clean
 
@@ -175,6 +178,24 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest_main.dir/clean
 gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 
 .PHONY : gtest/googletest/clean
+
+#=============================================================================
+# Directory level rules for directory object_detection
+
+# Recursive "all" directory target.
+object_detection/all:
+
+.PHONY : object_detection/all
+
+# Recursive "preinstall" directory target.
+object_detection/preinstall:
+
+.PHONY : object_detection/preinstall
+
+# Recursive "clean" directory target.
+object_detection/clean:
+
+.PHONY : object_detection/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
