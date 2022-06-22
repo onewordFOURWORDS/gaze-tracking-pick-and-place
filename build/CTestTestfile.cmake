@@ -6,4 +6,3 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("gaze_tracking")
-subdirs("object_detection")

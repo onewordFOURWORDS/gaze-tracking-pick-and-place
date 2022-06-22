@@ -18,14 +18,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "gaze_tracking/catkin_generated/ordered_paths.cmake"
   "gaze_tracking/catkin_generated/package.cmake"
   "gaze_tracking/cmake/gaze_tracking-genmsg.cmake"
-  "object_detection/catkin_generated/ordered_paths.cmake"
-  "object_detection/catkin_generated/package.cmake"
   "/home/tim/catkin_ws/devel/share/gaze_tracking/cmake/gaze_tracking-msg-paths.cmake"
   "/home/tim/catkin_ws/src/CMakeLists.txt"
   "/home/tim/catkin_ws/src/gaze_tracking/CMakeLists.txt"
   "/home/tim/catkin_ws/src/gaze_tracking/package.xml"
-  "/home/tim/catkin_ws/src/object_detection/CMakeLists.txt"
-  "/home/tim/catkin_ws/src/object_detection/package.xml"
   "/opt/ros/noetic/share/catkin/cmake/all.cmake"
   "/opt/ros/noetic/share/catkin/cmake/assert.cmake"
   "/opt/ros/noetic/share/catkin/cmake/atomic_configure_file.cmake"
@@ -214,7 +210,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
   "gtest/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "gaze_tracking/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "object_detection/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
