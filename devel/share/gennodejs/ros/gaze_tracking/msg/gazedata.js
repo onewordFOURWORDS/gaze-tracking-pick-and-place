@@ -18,40 +18,49 @@ class gazedata {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.BPOGX = null;
-      this.BPOGY = null;
-      this.BPOGV = null;
+      this.POGX = null;
+      this.POGY = null;
+      this.POGV = null;
+      this.POGD = null;
     }
     else {
-      if (initObj.hasOwnProperty('BPOGX')) {
-        this.BPOGX = initObj.BPOGX
+      if (initObj.hasOwnProperty('POGX')) {
+        this.POGX = initObj.POGX
       }
       else {
-        this.BPOGX = 0.0;
+        this.POGX = 0.0;
       }
-      if (initObj.hasOwnProperty('BPOGY')) {
-        this.BPOGY = initObj.BPOGY
-      }
-      else {
-        this.BPOGY = 0.0;
-      }
-      if (initObj.hasOwnProperty('BPOGV')) {
-        this.BPOGV = initObj.BPOGV
+      if (initObj.hasOwnProperty('POGY')) {
+        this.POGY = initObj.POGY
       }
       else {
-        this.BPOGV = 0.0;
+        this.POGY = 0.0;
+      }
+      if (initObj.hasOwnProperty('POGV')) {
+        this.POGV = initObj.POGV
+      }
+      else {
+        this.POGV = 0.0;
+      }
+      if (initObj.hasOwnProperty('POGD')) {
+        this.POGD = initObj.POGD
+      }
+      else {
+        this.POGD = 0.0;
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type gazedata
-    // Serialize message field [BPOGX]
-    bufferOffset = _serializer.float32(obj.BPOGX, buffer, bufferOffset);
-    // Serialize message field [BPOGY]
-    bufferOffset = _serializer.float32(obj.BPOGY, buffer, bufferOffset);
-    // Serialize message field [BPOGV]
-    bufferOffset = _serializer.float32(obj.BPOGV, buffer, bufferOffset);
+    // Serialize message field [POGX]
+    bufferOffset = _serializer.float32(obj.POGX, buffer, bufferOffset);
+    // Serialize message field [POGY]
+    bufferOffset = _serializer.float32(obj.POGY, buffer, bufferOffset);
+    // Serialize message field [POGV]
+    bufferOffset = _serializer.float32(obj.POGV, buffer, bufferOffset);
+    // Serialize message field [POGD]
+    bufferOffset = _serializer.float32(obj.POGD, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -59,17 +68,19 @@ class gazedata {
     //deserializes a message object of type gazedata
     let len;
     let data = new gazedata(null);
-    // Deserialize message field [BPOGX]
-    data.BPOGX = _deserializer.float32(buffer, bufferOffset);
-    // Deserialize message field [BPOGY]
-    data.BPOGY = _deserializer.float32(buffer, bufferOffset);
-    // Deserialize message field [BPOGV]
-    data.BPOGV = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [POGX]
+    data.POGX = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [POGY]
+    data.POGY = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [POGV]
+    data.POGV = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [POGD]
+    data.POGD = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 12;
+    return 16;
   }
 
   static datatype() {
@@ -79,15 +90,16 @@ class gazedata {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'c468a841b881d4bc2e7c92a6284034c6';
+    return '70030c120d5acadb46335a6d55bdf388';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    float32 BPOGX
-    float32 BPOGY
-    float32 BPOGV
+    float32 POGX
+    float32 POGY
+    float32 POGV
+    float32 POGD
     
     `;
   }
@@ -98,25 +110,32 @@ class gazedata {
       msg = {};
     }
     const resolved = new gazedata(null);
-    if (msg.BPOGX !== undefined) {
-      resolved.BPOGX = msg.BPOGX;
+    if (msg.POGX !== undefined) {
+      resolved.POGX = msg.POGX;
     }
     else {
-      resolved.BPOGX = 0.0
+      resolved.POGX = 0.0
     }
 
-    if (msg.BPOGY !== undefined) {
-      resolved.BPOGY = msg.BPOGY;
+    if (msg.POGY !== undefined) {
+      resolved.POGY = msg.POGY;
     }
     else {
-      resolved.BPOGY = 0.0
+      resolved.POGY = 0.0
     }
 
-    if (msg.BPOGV !== undefined) {
-      resolved.BPOGV = msg.BPOGV;
+    if (msg.POGV !== undefined) {
+      resolved.POGV = msg.POGV;
     }
     else {
-      resolved.BPOGV = 0.0
+      resolved.POGV = 0.0
+    }
+
+    if (msg.POGD !== undefined) {
+      resolved.POGD = msg.POGD;
+    }
+    else {
+      resolved.POGD = 0.0
     }
 
     return resolved;

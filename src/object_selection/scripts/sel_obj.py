@@ -17,14 +17,17 @@ def get_boxes(b):
 
 # Get the gaze tracker data from the message
 def get_data(data):
-	global BPOGX
-	global BPOGY
-	global BPOGV
-	global data_received
-	BPOGX = data.BPOGX
-	BPOGY = data.BPOGY
-	BPOGV = data.BPOGV
-	data_received = True
+    global POGX
+    global POGY
+    global POGV
+    global POGD
+    global data_received
+    POGX = data.POGX
+    POGY = data.POGY
+    POGV = data.POGV
+    POGD = data.POGD
+
+    data_received = True
 
 
 def main():
@@ -38,10 +41,15 @@ def main():
     while not rospy.is_shutdown():
         for i in range(len(box_ranges)):
             # relative gaze point for cropped image
-            point_x = int(900*BPOGX)
-            point_y = int(720*BPOGY)
+            point_x = int(900*POGX)
+            point_y = int(720*POGY)
+
             if (box_ranges[i][0] < point_x < box_ranges[i][2]) and (box_ranges[i][1] < point_y < box_ranges[i][3]):
-                print("object", box_ranges[i][4], "selected")
+                if POGD < 2:
+                    print("object", box_ranges[i][4], "will be selected")
+                    continue
+                elif POGD > 1:
+                    print("object", box_ranges[i][4], "selected")
 
 
         rate.sleep()

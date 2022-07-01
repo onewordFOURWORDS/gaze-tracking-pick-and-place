@@ -33,13 +33,14 @@ def get_obj_image(ros_img):
 
 # Get the gaze tracker data from the message
 def get_data(data):
-	global BPOGX
-	global BPOGY
-	global BPOGV
+	global POGX
+	global POGY
+	global POGV
 	global data_received
-	BPOGX = data.BPOGX
-	BPOGY = data.BPOGY
-	BPOGV = data.BPOGV
+	POGX = data.POGX
+	POGY = data.POGY
+	POGV = data.POGV
+
 	data_received = True
 
 
@@ -52,7 +53,7 @@ def main():
 	rospy.init_node('gaze_point', anonymous = True)
 	if switch == 1:
 		# define a subscriber to ream images
-		img_sub = rospy.Subscriber("/camera/color/image_raw", Image, get_image)
+		img_sub = rospy.Subscriber("/cropped_img", Image, get_image)
 	# define a subscriber to get gaze data
 	gaze_sub = rospy.Subscriber("/gaze_publisher", gazedata, get_data)
 	if switch == 2:
@@ -61,32 +62,31 @@ def main():
 	# define a publisher to publish images
 	img_pub = rospy.Publisher('/gaze_location_img', Image, queue_size = 1)
 
-	# set the loop frequenc
+	# set the loop frequenccropped_img
 	rate = rospy.Rate(10)
 	while not rospy.is_shutdown():
 		#print("Image Received?", img_received, "Data Received?", data_received)
 		# make sure we process if the camera has started streaming images
 		if img_received & data_received:
-			cropped_img = rgb_img[0:720, 0:900]
 
 			# Draw a circle on the image based on the gaze location
-			green = (0, 255, 0) # color of the circle
-			center = (int(900*BPOGX), int(720*BPOGY)) # center circle on gaze spot
+			green = (0, 100, 0) # color of the circle
+			center = (int(900*POGX), int(720*POGY)) # center circle on gaze spot
 			axes = (3,3) # circle size
 			angle = 0 # angle of the ellipse doesnt matter since this uses a circle
 			thickness = -1 # line thickness of the cirlce
 			# cv.ellipse(img, center, axes, angle, a0, a1, color, thickness)
-			marked_image = cv.ellipse(cropped_img, center, axes, angle, 0, 360, green, thickness)
+			marked_image = cv.ellipse(rgb_img, center, axes, angle, 0, 360, green, thickness)
 
 			# If gaze tracking is lost display a red circle as indication
-			if BPOGV == 0:
+			if POGV == 0:
 				red = (255, 0, 0) # color of the circle
 				center = (10, 10) # center circle on gaze spot
 				axes = (5, 5) # circle size
 				angle = 0 # angle of the ellipse doesnt matter since this uses a circle
 				thickness = -1 # line thickness of the cirlce
 
-				marked_image = cv.ellipse(cropped_img, center, axes, angle, 0, 360, red, thickness)
+				marked_image = cv.ellipse(rgb_img, center, axes, angle, 0, 360, red, thickness)
 
 			# convert it to ros msg and publish it
 			img_msg = CvBridge().cv2_to_imgmsg(marked_image, encoding="rgb8")

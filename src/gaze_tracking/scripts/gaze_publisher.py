@@ -23,9 +23,10 @@ def get_gaze():
         # This might be a bad way to get this
         # If we end up requesting different data from the server these indexes might change
         data = receive_gaze_data(s)
-        msg.BPOGX = data[0]
-        msg.BPOGY = data[1]
-        msg.BPOGV = data[2]
+        msg.POGX = data[0]
+        msg.POGY = data[1]
+        msg.POGV = data[4]
+        msg.POGD = data[3]
 
         pub.publish(msg)
         rate.sleep()
@@ -57,7 +58,7 @@ def request_gaze_data(s):
     """
     # Send command to request certain data
     s.send(str.encode('<SET ID="ENABLE_SEND_BLINK" STATE="1" />\r\n'))
-    s.send(str.encode('<SET ID="ENABLE_SEND_POG_AAC" STATE="1" />\r\n'))
+    s.send(str.encode('<SET ID="ENABLE_SEND_POG_FIX" STATE="1" />\r\n'))
     # Enable the server to return the data requested
     s.send(str.encode('<SET ID="ENABLE_SEND_DATA" STATE="1" />\r\n'))
 
@@ -68,7 +69,7 @@ def receive_gaze_data(s):
     :param s: socket connection variable
     :return: rxdat (cleaned gaze data)
     """
-    # Regex that only includes numbers and .
+    # Regex that only includes numbers and '.'
     numbers = re.compile(r'\d+(?:\.\d+)?')
 
     newlist = []
@@ -78,7 +79,7 @@ def receive_gaze_data(s):
     # Split each data point into a separate item
     rxdat = rxdat.split()
     # Remove the first and last item in the list
-    # Removes '<REC' and '/>' items
+    # Removes '<REC'255 and '/>' items
     rxdat = rxdat[1:-1]
 
     # Convert to numpy array

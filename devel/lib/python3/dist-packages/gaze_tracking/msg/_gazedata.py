@@ -8,15 +8,16 @@ import struct
 
 
 class gazedata(genpy.Message):
-  _md5sum = "c468a841b881d4bc2e7c92a6284034c6"
+  _md5sum = "70030c120d5acadb46335a6d55bdf388"
   _type = "gaze_tracking/gazedata"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """float32 BPOGX
-float32 BPOGY
-float32 BPOGV
+  _full_text = """float32 POGX
+float32 POGY
+float32 POGV
+float32 POGD
 """
-  __slots__ = ['BPOGX','BPOGY','BPOGV']
-  _slot_types = ['float32','float32','float32']
+  __slots__ = ['POGX','POGY','POGV','POGD']
+  _slot_types = ['float32','float32','float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -26,7 +27,7 @@ float32 BPOGV
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       BPOGX,BPOGY,BPOGV
+       POGX,POGY,POGV,POGD
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -35,16 +36,19 @@ float32 BPOGV
     if args or kwds:
       super(gazedata, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.BPOGX is None:
-        self.BPOGX = 0.
-      if self.BPOGY is None:
-        self.BPOGY = 0.
-      if self.BPOGV is None:
-        self.BPOGV = 0.
+      if self.POGX is None:
+        self.POGX = 0.
+      if self.POGY is None:
+        self.POGY = 0.
+      if self.POGV is None:
+        self.POGV = 0.
+      if self.POGD is None:
+        self.POGD = 0.
     else:
-      self.BPOGX = 0.
-      self.BPOGY = 0.
-      self.BPOGV = 0.
+      self.POGX = 0.
+      self.POGY = 0.
+      self.POGV = 0.
+      self.POGD = 0.
 
   def _get_types(self):
     """
@@ -59,7 +63,7 @@ float32 BPOGV
     """
     try:
       _x = self
-      buff.write(_get_struct_3f().pack(_x.BPOGX, _x.BPOGY, _x.BPOGV))
+      buff.write(_get_struct_4f().pack(_x.POGX, _x.POGY, _x.POGV, _x.POGD))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -74,8 +78,8 @@ float32 BPOGV
       end = 0
       _x = self
       start = end
-      end += 12
-      (_x.BPOGX, _x.BPOGY, _x.BPOGV,) = _get_struct_3f().unpack(str[start:end])
+      end += 16
+      (_x.POGX, _x.POGY, _x.POGV, _x.POGD,) = _get_struct_4f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -89,7 +93,7 @@ float32 BPOGV
     """
     try:
       _x = self
-      buff.write(_get_struct_3f().pack(_x.BPOGX, _x.BPOGY, _x.BPOGV))
+      buff.write(_get_struct_4f().pack(_x.POGX, _x.POGY, _x.POGV, _x.POGD))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -105,8 +109,8 @@ float32 BPOGV
       end = 0
       _x = self
       start = end
-      end += 12
-      (_x.BPOGX, _x.BPOGY, _x.BPOGV,) = _get_struct_3f().unpack(str[start:end])
+      end += 16
+      (_x.POGX, _x.POGY, _x.POGV, _x.POGD,) = _get_struct_4f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -115,9 +119,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3f = None
-def _get_struct_3f():
-    global _struct_3f
-    if _struct_3f is None:
-        _struct_3f = struct.Struct("<3f")
-    return _struct_3f
+_struct_4f = None
+def _get_struct_4f():
+    global _struct_4f
+    if _struct_4f is None:
+        _struct_4f = struct.Struct("<4f")
+    return _struct_4f

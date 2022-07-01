@@ -1,3 +1,4 @@
-float32 BPOGX
-float32 BPOGY
-float32 BPOGV
+float32 POGX
+float32 POGY
+float32 POGV
+float32 POGD

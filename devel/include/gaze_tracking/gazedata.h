@@ -24,27 +24,32 @@ struct gazedata_
   typedef gazedata_<ContainerAllocator> Type;
 
   gazedata_()
-    : BPOGX(0.0)
-    , BPOGY(0.0)
-    , BPOGV(0.0)  {
+    : POGX(0.0)
+    , POGY(0.0)
+    , POGV(0.0)
+    , POGD(0.0)  {
     }
   gazedata_(const ContainerAllocator& _alloc)
-    : BPOGX(0.0)
-    , BPOGY(0.0)
-    , BPOGV(0.0)  {
+    : POGX(0.0)
+    , POGY(0.0)
+    , POGV(0.0)
+    , POGD(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef float _BPOGX_type;
-  _BPOGX_type BPOGX;
+   typedef float _POGX_type;
+  _POGX_type POGX;
 
-   typedef float _BPOGY_type;
-  _BPOGY_type BPOGY;
+   typedef float _POGY_type;
+  _POGY_type POGY;
 
-   typedef float _BPOGV_type;
-  _BPOGV_type BPOGV;
+   typedef float _POGV_type;
+  _POGV_type POGV;
+
+   typedef float _POGD_type;
+  _POGD_type POGD;
 
 
 
@@ -75,9 +80,10 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::gaze_tracking::gazedata_<ContainerAllocator1> & lhs, const ::gaze_tracking::gazedata_<ContainerAllocator2> & rhs)
 {
-  return lhs.BPOGX == rhs.BPOGX &&
-    lhs.BPOGY == rhs.BPOGY &&
-    lhs.BPOGV == rhs.BPOGV;
+  return lhs.POGX == rhs.POGX &&
+    lhs.POGY == rhs.POGY &&
+    lhs.POGV == rhs.POGV &&
+    lhs.POGD == rhs.POGD;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -134,12 +140,12 @@ struct MD5Sum< ::gaze_tracking::gazedata_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "c468a841b881d4bc2e7c92a6284034c6";
+    return "70030c120d5acadb46335a6d55bdf388";
   }
 
   static const char* value(const ::gaze_tracking::gazedata_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xc468a841b881d4bcULL;
-  static const uint64_t static_value2 = 0x2e7c92a6284034c6ULL;
+  static const uint64_t static_value1 = 0x70030c120d5acadbULL;
+  static const uint64_t static_value2 = 0x46335a6d55bdf388ULL;
 };
 
 template<class ContainerAllocator>
@@ -158,9 +164,10 @@ struct Definition< ::gaze_tracking::gazedata_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "float32 BPOGX\n"
-"float32 BPOGY\n"
-"float32 BPOGV\n"
+    return "float32 POGX\n"
+"float32 POGY\n"
+"float32 POGV\n"
+"float32 POGD\n"
 ;
   }
 
@@ -179,9 +186,10 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.BPOGX);
-      stream.next(m.BPOGY);
-      stream.next(m.BPOGV);
+      stream.next(m.POGX);
+      stream.next(m.POGY);
+      stream.next(m.POGV);
+      stream.next(m.POGD);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -200,12 +208,14 @@ struct Printer< ::gaze_tracking::gazedata_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::gaze_tracking::gazedata_<ContainerAllocator>& v)
   {
-    s << indent << "BPOGX: ";
-    Printer<float>::stream(s, indent + "  ", v.BPOGX);
-    s << indent << "BPOGY: ";
-    Printer<float>::stream(s, indent + "  ", v.BPOGY);
-    s << indent << "BPOGV: ";
-    Printer<float>::stream(s, indent + "  ", v.BPOGV);
+    s << indent << "POGX: ";
+    Printer<float>::stream(s, indent + "  ", v.POGX);
+    s << indent << "POGY: ";
+    Printer<float>::stream(s, indent + "  ", v.POGY);
+    s << indent << "POGV: ";
+    Printer<float>::stream(s, indent + "  ", v.POGV);
+    s << indent << "POGD: ";
+    Printer<float>::stream(s, indent + "  ", v.POGD);
   }
 };
 
