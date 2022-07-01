@@ -1,0 +1,8 @@
+prefix=/home/tim/catkin_ws/install
+
+Name: ur5e_control
+Description: Description of ur5e_control
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs roscpp roslib rospy sensor_msgs std_msgs trajectory_msgs message_runtime

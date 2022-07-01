@@ -1,2 +1,2 @@
-darknet_ros/darknet_ros:darknet_ros/darknet_ros_msgs:gaze_tracking:object_selection
+darknet_ros/darknet_ros:darknet_ros/darknet_ros_msgs:gaze_tracking:object_selection:ur5e_control
 -DCATKIN_DEVEL_PREFIX=/home/tim/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tim/catkin_ws/install -G Unix Makefiles

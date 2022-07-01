@@ -135,6 +135,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/tim/catkin_ws/build/object_selection/cmake_install.cmake")
   include("/home/tim/catkin_ws/build/darknet_ros/darknet_ros_msgs/cmake_install.cmake")
   include("/home/tim/catkin_ws/build/darknet_ros/darknet_ros/cmake_install.cmake")
+  include("/home/tim/catkin_ws/build/ur5e_control/cmake_install.cmake")
 
 endif()
 
