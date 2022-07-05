@@ -3,10 +3,10 @@
 UNCW Robotics Lab
 
 
-ROS Noetic
+- ROS Noetic
 
-UR5E Robotic Arm
+- UR5E Robotic Arm
 
-Ubuntu 20.04
+- Ubuntu 20.04
 
-Intel Realsense D415
+- Intel Realsense D415
