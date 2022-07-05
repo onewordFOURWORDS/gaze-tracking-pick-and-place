@@ -1,6 +1,6 @@
 # Robotic Gaze Based Pick and Place
 
-Gaze based robotic pick and place application.
+UNCW Robotics Lab
 
 
 ROS Noetic
