@@ -7,3 +7,6 @@
 [submodule "src/ur5e_control"]
 	path = src/ur5e_control
 	url = https://github.com/onewordFOURWORDS/ur5e_control.git
+[submodule "src/object_detection"]
+	path = src/object_detection
+	url = https://github.com/onewordFOURWORDS/Robotics_Report2.git
