@@ -1,12 +1,9 @@
 # Robotic Gaze Based Pick and Place
 
-Gaze based robotic pick and place application.
+UNCW Robotics Lab
 
 
-ROS Noetic
-
-UR5E Robotic Arm
-
-Ubuntu 20.04
-
-Intel Realsense D415
+- ROS Noetic
+- UR5E Robotic Arm
+- Ubuntu 20.04
+- Intel Realsense D415
