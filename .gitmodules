@@ -3,7 +3,7 @@
 	url = https://github.com/hsaeidi-uncw/Robotics_Report2.git
 [submodule "src/Robotics_Report2"]
 	path = src/Robotics_Report2
-	url = https://github.com/hsaeidi-uncw/Robotics_Report2.git
+	url = https://github.com/onewordFOURWORDS/Robotics_Report2.git
 [submodule "src/ur5e_control"]
 	path = src/ur5e_control
 	url = https://github.com/onewordFOURWORDS/ur5e_control.git
