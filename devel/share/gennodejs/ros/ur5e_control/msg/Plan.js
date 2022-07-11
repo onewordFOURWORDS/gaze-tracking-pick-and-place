@@ -19,24 +19,24 @@ class Plan {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.points = null;
+      this.point = null;
     }
     else {
-      if (initObj.hasOwnProperty('points')) {
-        this.points = initObj.points
+      if (initObj.hasOwnProperty('point')) {
+        this.point = initObj.point
       }
       else {
-        this.points = [];
+        this.point = [];
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type Plan
-    // Serialize message field [points]
-    // Serialize the length for message field [points]
-    bufferOffset = _serializer.uint32(obj.points.length, buffer, bufferOffset);
-    obj.points.forEach((val) => {
+    // Serialize message field [point]
+    // Serialize the length for message field [point]
+    bufferOffset = _serializer.uint32(obj.point.length, buffer, bufferOffset);
+    obj.point.forEach((val) => {
       bufferOffset = geometry_msgs.msg.Twist.serialize(val, buffer, bufferOffset);
     });
     return bufferOffset;
@@ -46,19 +46,19 @@ class Plan {
     //deserializes a message object of type Plan
     let len;
     let data = new Plan(null);
-    // Deserialize message field [points]
-    // Deserialize array length for message field [points]
+    // Deserialize message field [point]
+    // Deserialize array length for message field [point]
     len = _deserializer.uint32(buffer, bufferOffset);
-    data.points = new Array(len);
+    data.point = new Array(len);
     for (let i = 0; i < len; ++i) {
-      data.points[i] = geometry_msgs.msg.Twist.deserialize(buffer, bufferOffset)
+      data.point[i] = geometry_msgs.msg.Twist.deserialize(buffer, bufferOffset)
     }
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
-    length += 48 * object.points.length;
+    length += 48 * object.point.length;
     return length + 4;
   }
 
@@ -69,13 +69,13 @@ class Plan {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '392956a1af22c9b8eaac7e07bb3eb9f0';
+    return '294113bb7631d82f82b9aeb128d287f2';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    geometry_msgs/Twist[] points
+    geometry_msgs/Twist[] point
     
     ================================================================================
     MSG: geometry_msgs/Twist
@@ -104,14 +104,14 @@ class Plan {
       msg = {};
     }
     const resolved = new Plan(null);
-    if (msg.points !== undefined) {
-      resolved.points = new Array(msg.points.length);
-      for (let i = 0; i < resolved.points.length; ++i) {
-        resolved.points[i] = geometry_msgs.msg.Twist.Resolve(msg.points[i]);
+    if (msg.point !== undefined) {
+      resolved.point = new Array(msg.point.length);
+      for (let i = 0; i < resolved.point.length; ++i) {
+        resolved.point[i] = geometry_msgs.msg.Twist.Resolve(msg.point[i]);
       }
     }
     else {
-      resolved.points = []
+      resolved.point = []
     }
 
     return resolved;

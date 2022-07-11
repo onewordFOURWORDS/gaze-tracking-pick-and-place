@@ -9,10 +9,10 @@ import struct
 import geometry_msgs.msg
 
 class Plan(genpy.Message):
-  _md5sum = "392956a1af22c9b8eaac7e07bb3eb9f0"
+  _md5sum = "294113bb7631d82f82b9aeb128d287f2"
   _type = "ur5e_control/Plan"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """geometry_msgs/Twist[] points
+  _full_text = """geometry_msgs/Twist[] point
 
 ================================================================================
 MSG: geometry_msgs/Twist
@@ -32,7 +32,7 @@ MSG: geometry_msgs/Vector3
 float64 x
 float64 y
 float64 z"""
-  __slots__ = ['points']
+  __slots__ = ['point']
   _slot_types = ['geometry_msgs/Twist[]']
 
   def __init__(self, *args, **kwds):
@@ -43,7 +43,7 @@ float64 z"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       points
+       point
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -52,10 +52,10 @@ float64 z"""
     if args or kwds:
       super(Plan, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.points is None:
-        self.points = []
+      if self.point is None:
+        self.point = []
     else:
-      self.points = []
+      self.point = []
 
   def _get_types(self):
     """
@@ -69,9 +69,9 @@ float64 z"""
     :param buff: buffer, ``StringIO``
     """
     try:
-      length = len(self.points)
+      length = len(self.point)
       buff.write(_struct_I.pack(length))
-      for val1 in self.points:
+      for val1 in self.point:
         _v1 = val1.linear
         _x = _v1
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
@@ -89,13 +89,13 @@ float64 z"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.points is None:
-        self.points = None
+      if self.point is None:
+        self.point = None
       end = 0
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
-      self.points = []
+      self.point = []
       for i in range(0, length):
         val1 = geometry_msgs.msg.Twist()
         _v3 = val1.linear
@@ -108,7 +108,7 @@ float64 z"""
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
-        self.points.append(val1)
+        self.point.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -121,9 +121,9 @@ float64 z"""
     :param numpy: numpy python module
     """
     try:
-      length = len(self.points)
+      length = len(self.point)
       buff.write(_struct_I.pack(length))
-      for val1 in self.points:
+      for val1 in self.point:
         _v5 = val1.linear
         _x = _v5
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
@@ -142,13 +142,13 @@ float64 z"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.points is None:
-        self.points = None
+      if self.point is None:
+        self.point = None
       end = 0
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
-      self.points = []
+      self.point = []
       for i in range(0, length):
         val1 = geometry_msgs.msg.Twist()
         _v7 = val1.linear
@@ -161,7 +161,7 @@ float64 z"""
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
-        self.points.append(val1)
+        self.point.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

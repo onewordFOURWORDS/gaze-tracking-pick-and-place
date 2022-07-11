@@ -7,6 +7,7 @@
 subdirs("gtest")
 subdirs("gaze_tracking")
 subdirs("object_selection")
+subdirs("robotics_report2")
 subdirs("darknet_ros/darknet_ros_msgs")
 subdirs("darknet_ros/darknet_ros")
-subdirs("ur5e_control")
+subdirs("robot_vision_lectures")

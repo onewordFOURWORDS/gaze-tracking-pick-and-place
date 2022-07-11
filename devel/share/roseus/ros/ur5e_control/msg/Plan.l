@@ -16,57 +16,57 @@
 
 (defclass ur5e_control::Plan
   :super ros::object
-  :slots (_points ))
+  :slots (_point ))
 
 (defmethod ur5e_control::Plan
   (:init
    (&key
-    ((:points __points) ())
+    ((:point __point) ())
     )
    (send-super :init)
-   (setq _points __points)
+   (setq _point __point)
    self)
-  (:points
-   (&rest __points)
-   (if (keywordp (car __points))
-       (send* _points __points)
+  (:point
+   (&rest __point)
+   (if (keywordp (car __point))
+       (send* _point __point)
      (progn
-       (if __points (setq _points (car __points)))
-       _points)))
+       (if __point (setq _point (car __point)))
+       _point)))
   (:serialization-length
    ()
    (+
-    ;; geometry_msgs/Twist[] _points
-    (apply #'+ (send-all _points :serialization-length)) 4
+    ;; geometry_msgs/Twist[] _point
+    (apply #'+ (send-all _point :serialization-length)) 4
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; geometry_msgs/Twist[] _points
-     (write-long (length _points) s)
-     (dolist (elem _points)
+     ;; geometry_msgs/Twist[] _point
+     (write-long (length _point) s)
+     (dolist (elem _point)
        (send elem :serialize s)
        )
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; geometry_msgs/Twist[] _points
+   ;; geometry_msgs/Twist[] _point
    (let (n)
      (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
-     (setq _points (let (r) (dotimes (i n) (push (instance geometry_msgs::Twist :init) r)) r))
-     (dolist (elem- _points)
+     (setq _point (let (r) (dotimes (i n) (push (instance geometry_msgs::Twist :init) r)) r))
+     (dolist (elem- _point)
      (send elem- :deserialize buf ptr-) (incf ptr- (send elem- :serialization-length))
      ))
    ;;
    self)
   )
 
-(setf (get ur5e_control::Plan :md5sum-) "392956a1af22c9b8eaac7e07bb3eb9f0")
+(setf (get ur5e_control::Plan :md5sum-) "294113bb7631d82f82b9aeb128d287f2")
 (setf (get ur5e_control::Plan :datatype-) "ur5e_control/Plan")
 (setf (get ur5e_control::Plan :definition-)
-      "geometry_msgs/Twist[] points
+      "geometry_msgs/Twist[] point
 
 ================================================================================
 MSG: geometry_msgs/Twist
@@ -90,6 +90,6 @@ float64 z
 
 
 
-(provide :ur5e_control/Plan "392956a1af22c9b8eaac7e07bb3eb9f0")
+(provide :ur5e_control/Plan "294113bb7631d82f82b9aeb128d287f2")
 
 
