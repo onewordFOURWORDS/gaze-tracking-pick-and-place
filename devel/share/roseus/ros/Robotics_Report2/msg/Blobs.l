@@ -61,21 +61,22 @@
    self)
   )
 
-(setf (get Robotics_Report2::Blobs :md5sum-) "e2836b3623ac455b4a432ee2fdf4d41d")
+(setf (get Robotics_Report2::Blobs :md5sum-) "5544317ff6fcb345e7b3bfefa4c6bf5d")
 (setf (get Robotics_Report2::Blobs :datatype-) "Robotics_Report2/Blobs")
 (setf (get Robotics_Report2::Blobs :definition-)
       "Robotics_Report2/Blob_Params[] blob_list
 
 ================================================================================
 MSG: Robotics_Report2/Blob_Params
-int8 x_coord
-int8 y_coord
-int8 radius
+int32 x_coord
+int32 y_coord
+int32 radius
+int8 id
 
 ")
 
 
 
-(provide :Robotics_Report2/Blobs "e2836b3623ac455b4a432ee2fdf4d41d")
+(provide :Robotics_Report2/Blobs "5544317ff6fcb345e7b3bfefa4c6bf5d")
 
 

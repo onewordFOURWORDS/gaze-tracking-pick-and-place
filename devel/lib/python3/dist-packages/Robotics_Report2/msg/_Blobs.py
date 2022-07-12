@@ -9,16 +9,17 @@ import struct
 import Robotics_Report2.msg
 
 class Blobs(genpy.Message):
-  _md5sum = "e2836b3623ac455b4a432ee2fdf4d41d"
+  _md5sum = "5544317ff6fcb345e7b3bfefa4c6bf5d"
   _type = "Robotics_Report2/Blobs"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """Robotics_Report2/Blob_Params[] blob_list
 
 ================================================================================
 MSG: Robotics_Report2/Blob_Params
-int8 x_coord
-int8 y_coord
-int8 radius
+int32 x_coord
+int32 y_coord
+int32 radius
+int8 id
 """
   __slots__ = ['blob_list']
   _slot_types = ['Robotics_Report2/Blob_Params[]']
@@ -61,7 +62,7 @@ int8 radius
       buff.write(_struct_I.pack(length))
       for val1 in self.blob_list:
         _x = val1
-        buff.write(_get_struct_3b().pack(_x.x_coord, _x.y_coord, _x.radius))
+        buff.write(_get_struct_3ib().pack(_x.x_coord, _x.y_coord, _x.radius, _x.id))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -84,8 +85,8 @@ int8 radius
         val1 = Robotics_Report2.msg.Blob_Params()
         _x = val1
         start = end
-        end += 3
-        (_x.x_coord, _x.y_coord, _x.radius,) = _get_struct_3b().unpack(str[start:end])
+        end += 13
+        (_x.x_coord, _x.y_coord, _x.radius, _x.id,) = _get_struct_3ib().unpack(str[start:end])
         self.blob_list.append(val1)
       return self
     except struct.error as e:
@@ -103,7 +104,7 @@ int8 radius
       buff.write(_struct_I.pack(length))
       for val1 in self.blob_list:
         _x = val1
-        buff.write(_get_struct_3b().pack(_x.x_coord, _x.y_coord, _x.radius))
+        buff.write(_get_struct_3ib().pack(_x.x_coord, _x.y_coord, _x.radius, _x.id))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -127,8 +128,8 @@ int8 radius
         val1 = Robotics_Report2.msg.Blob_Params()
         _x = val1
         start = end
-        end += 3
-        (_x.x_coord, _x.y_coord, _x.radius,) = _get_struct_3b().unpack(str[start:end])
+        end += 13
+        (_x.x_coord, _x.y_coord, _x.radius, _x.id,) = _get_struct_3ib().unpack(str[start:end])
         self.blob_list.append(val1)
       return self
     except struct.error as e:
@@ -138,9 +139,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3b = None
-def _get_struct_3b():
-    global _struct_3b
-    if _struct_3b is None:
-        _struct_3b = struct.Struct("<3b")
-    return _struct_3b
+_struct_3ib = None
+def _get_struct_3ib():
+    global _struct_3ib
+    if _struct_3ib is None:
+        _struct_3ib = struct.Struct("<3ib")
+    return _struct_3ib

@@ -5,4 +5,6 @@
           Y_COORD
           RADIUS-VAL
           RADIUS
+          ID-VAL
+          ID
 ))

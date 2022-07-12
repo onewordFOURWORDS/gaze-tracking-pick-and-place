@@ -26,25 +26,30 @@ struct Blob_Params_
   Blob_Params_()
     : x_coord(0)
     , y_coord(0)
-    , radius(0)  {
+    , radius(0)
+    , id(0)  {
     }
   Blob_Params_(const ContainerAllocator& _alloc)
     : x_coord(0)
     , y_coord(0)
-    , radius(0)  {
+    , radius(0)
+    , id(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef int8_t _x_coord_type;
+   typedef int32_t _x_coord_type;
   _x_coord_type x_coord;
 
-   typedef int8_t _y_coord_type;
+   typedef int32_t _y_coord_type;
   _y_coord_type y_coord;
 
-   typedef int8_t _radius_type;
+   typedef int32_t _radius_type;
   _radius_type radius;
+
+   typedef int8_t _id_type;
+  _id_type id;
 
 
 
@@ -77,7 +82,8 @@ bool operator==(const ::Robotics_Report2::Blob_Params_<ContainerAllocator1> & lh
 {
   return lhs.x_coord == rhs.x_coord &&
     lhs.y_coord == rhs.y_coord &&
-    lhs.radius == rhs.radius;
+    lhs.radius == rhs.radius &&
+    lhs.id == rhs.id;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -134,12 +140,12 @@ struct MD5Sum< ::Robotics_Report2::Blob_Params_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "27713404fd77ebe3383ee286844ae54f";
+    return "a6a7bef06e2fbe7fca6bc92358ec6b49";
   }
 
   static const char* value(const ::Robotics_Report2::Blob_Params_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x27713404fd77ebe3ULL;
-  static const uint64_t static_value2 = 0x383ee286844ae54fULL;
+  static const uint64_t static_value1 = 0xa6a7bef06e2fbe7fULL;
+  static const uint64_t static_value2 = 0xca6bc92358ec6b49ULL;
 };
 
 template<class ContainerAllocator>
@@ -158,9 +164,10 @@ struct Definition< ::Robotics_Report2::Blob_Params_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int8 x_coord\n"
-"int8 y_coord\n"
-"int8 radius\n"
+    return "int32 x_coord\n"
+"int32 y_coord\n"
+"int32 radius\n"
+"int8 id\n"
 ;
   }
 
@@ -182,6 +189,7 @@ namespace serialization
       stream.next(m.x_coord);
       stream.next(m.y_coord);
       stream.next(m.radius);
+      stream.next(m.id);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -201,11 +209,13 @@ struct Printer< ::Robotics_Report2::Blob_Params_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::Robotics_Report2::Blob_Params_<ContainerAllocator>& v)
   {
     s << indent << "x_coord: ";
-    Printer<int8_t>::stream(s, indent + "  ", v.x_coord);
+    Printer<int32_t>::stream(s, indent + "  ", v.x_coord);
     s << indent << "y_coord: ";
-    Printer<int8_t>::stream(s, indent + "  ", v.y_coord);
+    Printer<int32_t>::stream(s, indent + "  ", v.y_coord);
     s << indent << "radius: ";
-    Printer<int8_t>::stream(s, indent + "  ", v.radius);
+    Printer<int32_t>::stream(s, indent + "  ", v.radius);
+    s << indent << "id: ";
+    Printer<int8_t>::stream(s, indent + "  ", v.id);
   }
 };
 

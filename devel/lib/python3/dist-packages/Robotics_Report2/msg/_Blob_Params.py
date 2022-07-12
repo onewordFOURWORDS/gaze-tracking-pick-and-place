@@ -8,15 +8,16 @@ import struct
 
 
 class Blob_Params(genpy.Message):
-  _md5sum = "27713404fd77ebe3383ee286844ae54f"
+  _md5sum = "a6a7bef06e2fbe7fca6bc92358ec6b49"
   _type = "Robotics_Report2/Blob_Params"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """int8 x_coord
-int8 y_coord
-int8 radius
+  _full_text = """int32 x_coord
+int32 y_coord
+int32 radius
+int8 id
 """
-  __slots__ = ['x_coord','y_coord','radius']
-  _slot_types = ['int8','int8','int8']
+  __slots__ = ['x_coord','y_coord','radius','id']
+  _slot_types = ['int32','int32','int32','int8']
 
   def __init__(self, *args, **kwds):
     """
@@ -26,7 +27,7 @@ int8 radius
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       x_coord,y_coord,radius
+       x_coord,y_coord,radius,id
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -41,10 +42,13 @@ int8 radius
         self.y_coord = 0
       if self.radius is None:
         self.radius = 0
+      if self.id is None:
+        self.id = 0
     else:
       self.x_coord = 0
       self.y_coord = 0
       self.radius = 0
+      self.id = 0
 
   def _get_types(self):
     """
@@ -59,7 +63,7 @@ int8 radius
     """
     try:
       _x = self
-      buff.write(_get_struct_3b().pack(_x.x_coord, _x.y_coord, _x.radius))
+      buff.write(_get_struct_3ib().pack(_x.x_coord, _x.y_coord, _x.radius, _x.id))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -74,8 +78,8 @@ int8 radius
       end = 0
       _x = self
       start = end
-      end += 3
-      (_x.x_coord, _x.y_coord, _x.radius,) = _get_struct_3b().unpack(str[start:end])
+      end += 13
+      (_x.x_coord, _x.y_coord, _x.radius, _x.id,) = _get_struct_3ib().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -89,7 +93,7 @@ int8 radius
     """
     try:
       _x = self
-      buff.write(_get_struct_3b().pack(_x.x_coord, _x.y_coord, _x.radius))
+      buff.write(_get_struct_3ib().pack(_x.x_coord, _x.y_coord, _x.radius, _x.id))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -105,8 +109,8 @@ int8 radius
       end = 0
       _x = self
       start = end
-      end += 3
-      (_x.x_coord, _x.y_coord, _x.radius,) = _get_struct_3b().unpack(str[start:end])
+      end += 13
+      (_x.x_coord, _x.y_coord, _x.radius, _x.id,) = _get_struct_3ib().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -115,9 +119,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3b = None
-def _get_struct_3b():
-    global _struct_3b
-    if _struct_3b is None:
-        _struct_3b = struct.Struct("<3b")
-    return _struct_3b
+_struct_3ib = None
+def _get_struct_3ib():
+    global _struct_3ib
+    if _struct_3ib is None:
+        _struct_3ib = struct.Struct("<3ib")
+    return _struct_3ib

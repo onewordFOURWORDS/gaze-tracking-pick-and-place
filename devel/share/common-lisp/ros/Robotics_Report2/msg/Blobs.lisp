@@ -58,16 +58,16 @@
   "Robotics_Report2/Blobs")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Blobs>)))
   "Returns md5sum for a message object of type '<Blobs>"
-  "e2836b3623ac455b4a432ee2fdf4d41d")
+  "5544317ff6fcb345e7b3bfefa4c6bf5d")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Blobs)))
   "Returns md5sum for a message object of type 'Blobs"
-  "e2836b3623ac455b4a432ee2fdf4d41d")
+  "5544317ff6fcb345e7b3bfefa4c6bf5d")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Blobs>)))
   "Returns full string definition for message of type '<Blobs>"
-  (cl:format cl:nil "Robotics_Report2/Blob_Params[] blob_list~%~%================================================================================~%MSG: Robotics_Report2/Blob_Params~%int8 x_coord~%int8 y_coord~%int8 radius~%~%~%"))
+  (cl:format cl:nil "Robotics_Report2/Blob_Params[] blob_list~%~%================================================================================~%MSG: Robotics_Report2/Blob_Params~%int32 x_coord~%int32 y_coord~%int32 radius~%int8 id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Blobs)))
   "Returns full string definition for message of type 'Blobs"
-  (cl:format cl:nil "Robotics_Report2/Blob_Params[] blob_list~%~%================================================================================~%MSG: Robotics_Report2/Blob_Params~%int8 x_coord~%int8 y_coord~%int8 radius~%~%~%"))
+  (cl:format cl:nil "Robotics_Report2/Blob_Params[] blob_list~%~%================================================================================~%MSG: Robotics_Report2/Blob_Params~%int32 x_coord~%int32 y_coord~%int32 radius~%int8 id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Blobs>))
   (cl:+ 0
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'blob_list) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ (roslisp-msg-protocol:serialization-length ele))))

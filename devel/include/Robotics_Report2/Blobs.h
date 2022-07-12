@@ -123,12 +123,12 @@ struct MD5Sum< ::Robotics_Report2::Blobs_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "e2836b3623ac455b4a432ee2fdf4d41d";
+    return "5544317ff6fcb345e7b3bfefa4c6bf5d";
   }
 
   static const char* value(const ::Robotics_Report2::Blobs_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xe2836b3623ac455bULL;
-  static const uint64_t static_value2 = 0x4a432ee2fdf4d41dULL;
+  static const uint64_t static_value1 = 0x5544317ff6fcb345ULL;
+  static const uint64_t static_value2 = 0xe7b3bfefa4c6bf5dULL;
 };
 
 template<class ContainerAllocator>
@@ -151,9 +151,10 @@ struct Definition< ::Robotics_Report2::Blobs_<ContainerAllocator> >
 "\n"
 "================================================================================\n"
 "MSG: Robotics_Report2/Blob_Params\n"
-"int8 x_coord\n"
-"int8 y_coord\n"
-"int8 radius\n"
+"int32 x_coord\n"
+"int32 y_coord\n"
+"int32 radius\n"
+"int8 id\n"
 ;
   }
 

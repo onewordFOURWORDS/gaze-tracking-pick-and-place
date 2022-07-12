@@ -58,7 +58,7 @@ class Blobs {
 
   static getMessageSize(object) {
     let length = 0;
-    length += 3 * object.blob_list.length;
+    length += 13 * object.blob_list.length;
     return length + 4;
   }
 
@@ -69,7 +69,7 @@ class Blobs {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'e2836b3623ac455b4a432ee2fdf4d41d';
+    return '5544317ff6fcb345e7b3bfefa4c6bf5d';
   }
 
   static messageDefinition() {
@@ -79,9 +79,10 @@ class Blobs {
     
     ================================================================================
     MSG: Robotics_Report2/Blob_Params
-    int8 x_coord
-    int8 y_coord
-    int8 radius
+    int32 x_coord
+    int32 y_coord
+    int32 radius
+    int8 id
     
     `;
   }

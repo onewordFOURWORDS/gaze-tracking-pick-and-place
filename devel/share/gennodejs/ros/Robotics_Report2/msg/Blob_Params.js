@@ -21,6 +21,7 @@ class Blob_Params {
       this.x_coord = null;
       this.y_coord = null;
       this.radius = null;
+      this.id = null;
     }
     else {
       if (initObj.hasOwnProperty('x_coord')) {
@@ -41,17 +42,25 @@ class Blob_Params {
       else {
         this.radius = 0;
       }
+      if (initObj.hasOwnProperty('id')) {
+        this.id = initObj.id
+      }
+      else {
+        this.id = 0;
+      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type Blob_Params
     // Serialize message field [x_coord]
-    bufferOffset = _serializer.int8(obj.x_coord, buffer, bufferOffset);
+    bufferOffset = _serializer.int32(obj.x_coord, buffer, bufferOffset);
     // Serialize message field [y_coord]
-    bufferOffset = _serializer.int8(obj.y_coord, buffer, bufferOffset);
+    bufferOffset = _serializer.int32(obj.y_coord, buffer, bufferOffset);
     // Serialize message field [radius]
-    bufferOffset = _serializer.int8(obj.radius, buffer, bufferOffset);
+    bufferOffset = _serializer.int32(obj.radius, buffer, bufferOffset);
+    // Serialize message field [id]
+    bufferOffset = _serializer.int8(obj.id, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -60,16 +69,18 @@ class Blob_Params {
     let len;
     let data = new Blob_Params(null);
     // Deserialize message field [x_coord]
-    data.x_coord = _deserializer.int8(buffer, bufferOffset);
+    data.x_coord = _deserializer.int32(buffer, bufferOffset);
     // Deserialize message field [y_coord]
-    data.y_coord = _deserializer.int8(buffer, bufferOffset);
+    data.y_coord = _deserializer.int32(buffer, bufferOffset);
     // Deserialize message field [radius]
-    data.radius = _deserializer.int8(buffer, bufferOffset);
+    data.radius = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [id]
+    data.id = _deserializer.int8(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 3;
+    return 13;
   }
 
   static datatype() {
@@ -79,15 +90,16 @@ class Blob_Params {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '27713404fd77ebe3383ee286844ae54f';
+    return 'a6a7bef06e2fbe7fca6bc92358ec6b49';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int8 x_coord
-    int8 y_coord
-    int8 radius
+    int32 x_coord
+    int32 y_coord
+    int32 radius
+    int8 id
     
     `;
   }
@@ -117,6 +129,13 @@ class Blob_Params {
     }
     else {
       resolved.radius = 0
+    }
+
+    if (msg.id !== undefined) {
+      resolved.id = msg.id;
+    }
+    else {
+      resolved.id = 0
     }
 
     return resolved;

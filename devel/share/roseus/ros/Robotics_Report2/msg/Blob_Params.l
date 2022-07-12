@@ -14,7 +14,7 @@
 
 (defclass Robotics_Report2::Blob_Params
   :super ros::object
-  :slots (_x_coord _y_coord _radius ))
+  :slots (_x_coord _y_coord _radius _id ))
 
 (defmethod Robotics_Report2::Blob_Params
   (:init
@@ -22,11 +22,13 @@
     ((:x_coord __x_coord) 0)
     ((:y_coord __y_coord) 0)
     ((:radius __radius) 0)
+    ((:id __id) 0)
     )
    (send-super :init)
    (setq _x_coord (round __x_coord))
    (setq _y_coord (round __y_coord))
    (setq _radius (round __radius))
+   (setq _id (round __id))
    self)
   (:x_coord
    (&optional __x_coord)
@@ -37,54 +39,62 @@
   (:radius
    (&optional __radius)
    (if __radius (setq _radius __radius)) _radius)
+  (:id
+   (&optional __id)
+   (if __id (setq _id __id)) _id)
   (:serialization-length
    ()
    (+
-    ;; int8 _x_coord
-    1
-    ;; int8 _y_coord
-    1
-    ;; int8 _radius
+    ;; int32 _x_coord
+    4
+    ;; int32 _y_coord
+    4
+    ;; int32 _radius
+    4
+    ;; int8 _id
     1
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; int8 _x_coord
-       (write-byte _x_coord s)
-     ;; int8 _y_coord
-       (write-byte _y_coord s)
-     ;; int8 _radius
-       (write-byte _radius s)
+     ;; int32 _x_coord
+       (write-long _x_coord s)
+     ;; int32 _y_coord
+       (write-long _y_coord s)
+     ;; int32 _radius
+       (write-long _radius s)
+     ;; int8 _id
+       (write-byte _id s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; int8 _x_coord
-     (setq _x_coord (sys::peek buf ptr- :char)) (incf ptr- 1)
-     (if (> _x_coord 127) (setq _x_coord (- _x_coord 256)))
-   ;; int8 _y_coord
-     (setq _y_coord (sys::peek buf ptr- :char)) (incf ptr- 1)
-     (if (> _y_coord 127) (setq _y_coord (- _y_coord 256)))
-   ;; int8 _radius
-     (setq _radius (sys::peek buf ptr- :char)) (incf ptr- 1)
-     (if (> _radius 127) (setq _radius (- _radius 256)))
+   ;; int32 _x_coord
+     (setq _x_coord (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _y_coord
+     (setq _y_coord (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _radius
+     (setq _radius (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int8 _id
+     (setq _id (sys::peek buf ptr- :char)) (incf ptr- 1)
+     (if (> _id 127) (setq _id (- _id 256)))
    ;;
    self)
   )
 
-(setf (get Robotics_Report2::Blob_Params :md5sum-) "27713404fd77ebe3383ee286844ae54f")
+(setf (get Robotics_Report2::Blob_Params :md5sum-) "a6a7bef06e2fbe7fca6bc92358ec6b49")
 (setf (get Robotics_Report2::Blob_Params :datatype-) "Robotics_Report2/Blob_Params")
 (setf (get Robotics_Report2::Blob_Params :definition-)
-      "int8 x_coord
-int8 y_coord
-int8 radius
+      "int32 x_coord
+int32 y_coord
+int32 radius
+int8 id
 
 ")
 
 
 
-(provide :Robotics_Report2/Blob_Params "27713404fd77ebe3383ee286844ae54f")
+(provide :Robotics_Report2/Blob_Params "a6a7bef06e2fbe7fca6bc92358ec6b49")
 
 

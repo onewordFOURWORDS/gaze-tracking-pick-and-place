@@ -35,7 +35,6 @@ def main():
     # initilize a subscriber to get darknet bounding boxes
     darknet_boxes = rospy.Subscriber("/darknet_ros/bounding_boxes", BoundingBoxes, get_boxes)
     gaze_sub = rospy.Subscriber("/gaze_publisher", gazedata, get_data)
-
     rate = rospy.Rate(1)
 
     while not rospy.is_shutdown():
