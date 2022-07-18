@@ -1,0 +1,8 @@
+roscore
+roslaunch realsense2_camera rs_rgbd.roslaunch
+rosrun gaze_tracking crop_img.py
+rosrun gaze_tracking gaze_publisher.py
+rosrun gaze_tracking gaze_point_blobs.py
+rosrun Robotics_Report2 detect_ball_blob.py
+rosrun object_selection sel_obj_blobs.py
+rosrun image_view image_view image:=/gaze_location_img

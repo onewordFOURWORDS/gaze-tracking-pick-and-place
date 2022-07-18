@@ -36,7 +36,7 @@ def main():
     gaze_sub = rospy.Subscriber("/gaze_publisher", gazedata, get_gaze)
     sel_areas = rospy.Subscriber("/blob_data", Blobs, get_blobs)
     sel_pub = rospy.Publisher('/selected_obj', Blob_Params, queue_size = 1)
-    rate = rospy.Rate(5)
+    rate = rospy.Rate(10)
 
     while not rospy.is_shutdown():
         if gaze_received & blob_received:
@@ -53,10 +53,10 @@ def main():
                 # this is actually selecting within a box vs a circle shape
                 # should actually provide more robust selectin because bigger area
                 if ((x_coord - radius) < point_x < (x_coord + radius)) and ((y_coord - radius) < point_y < (y_coord + radius)):
-                    if POGD < 1:
+                    if POGD < .6:
                         print("object", i, "will be selected")
                         continue
-                    elif POGD > 1:
+                    elif POGD > .6:
                         sel_pub.publish(blob_list[i])
                         print("object", i, "selected")
 

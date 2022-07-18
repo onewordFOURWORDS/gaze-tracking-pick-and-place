@@ -44,7 +44,7 @@ def main():
             point_y = int(720*POGY)
 
             if (box_ranges[i][0] < point_x < box_ranges[i][2]) and (box_ranges[i][1] < point_y < box_ranges[i][3]):
-                if POGD < 2:
+                if POGD < 1:
                     print("object", box_ranges[i][4], "will be selected")
                     continue
                 elif POGD > 1:
