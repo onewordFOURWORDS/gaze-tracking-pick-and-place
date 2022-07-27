@@ -1,8 +1,13 @@
 roscore
-roslaunch realsense2_camera rs_rgbd.roslaunch
+roslaunch realsense2_camera rs_rgbd.launch
+	For USB2 connections:
+	roslaunch realsense2_camera rs_rgbd.launch color_width:=1280 color_height:=720 color_fps:=6 depth_width:=1280 depth_height:=720 depth_fps:=6
 rosrun gaze_tracking crop_img.py
 rosrun gaze_tracking gaze_publisher.py
 rosrun gaze_tracking gaze_point_blobs.py
 rosrun Robotics_Report2 detect_ball_blob.py
 rosrun object_selection sel_obj_blobs.py
 rosrun image_view image_view image:=/gaze_location_img
+rosrun object_selection remove_unselected_obj.py
+rosrun robot_vision_lectures crop_visualize_3D.cpp
+rosrun Robotics_Report2 sphere_fit.py

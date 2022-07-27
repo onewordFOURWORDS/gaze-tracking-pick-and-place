@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/tim/catkin_ws/build
 include ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan.dir/progress.make
 
 ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan:
-	cd /home/tim/catkin_ws/build/ur5e_control && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py ur5e_control /home/tim/catkin_ws/src/ur5e_control/msg/Plan.msg geometry_msgs/Twist:geometry_msgs/Vector3
+	cd /home/tim/catkin_ws/build/ur5e_control && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py ur5e_control /home/tim/catkin_ws/src/ur5e_control/msg/Plan.msg geometry_msgs/Vector3:geometry_msgs/Twist:std_msgs/UInt8
 
 _ur5e_control_generate_messages_check_deps_Plan: ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan
 _ur5e_control_generate_messages_check_deps_Plan: ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan.dir/build.make

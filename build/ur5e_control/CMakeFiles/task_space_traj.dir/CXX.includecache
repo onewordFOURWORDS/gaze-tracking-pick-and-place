@@ -23,6 +23,8 @@ ros/message_operations.h
 -
 geometry_msgs/Twist.h
 -
+std_msgs/UInt8.h
+-
 
 /home/tim/catkin_ws/src/ur5e_control/src/task_space_traj.cpp
 ros/ros.h

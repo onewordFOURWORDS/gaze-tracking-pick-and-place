@@ -16,6 +16,7 @@
 #include <ros/message_operations.h>
 
 #include <geometry_msgs/Twist.h>
+#include <std_msgs/UInt8.h>
 
 namespace ur5e_control
 {
@@ -25,17 +26,22 @@ struct Plan_
   typedef Plan_<ContainerAllocator> Type;
 
   Plan_()
-    : point()  {
+    : points()
+    , modes()  {
     }
   Plan_(const ContainerAllocator& _alloc)
-    : point(_alloc)  {
+    : points(_alloc)
+    , modes(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef std::vector< ::geometry_msgs::Twist_<ContainerAllocator> , typename ContainerAllocator::template rebind< ::geometry_msgs::Twist_<ContainerAllocator> >::other >  _point_type;
-  _point_type point;
+   typedef std::vector< ::geometry_msgs::Twist_<ContainerAllocator> , typename ContainerAllocator::template rebind< ::geometry_msgs::Twist_<ContainerAllocator> >::other >  _points_type;
+  _points_type points;
+
+   typedef std::vector< ::std_msgs::UInt8_<ContainerAllocator> , typename ContainerAllocator::template rebind< ::std_msgs::UInt8_<ContainerAllocator> >::other >  _modes_type;
+  _modes_type modes;
 
 
 
@@ -66,7 +72,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::ur5e_control::Plan_<ContainerAllocator1> & lhs, const ::ur5e_control::Plan_<ContainerAllocator2> & rhs)
 {
-  return lhs.point == rhs.point;
+  return lhs.points == rhs.points &&
+    lhs.modes == rhs.modes;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -123,12 +130,12 @@ struct MD5Sum< ::ur5e_control::Plan_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "294113bb7631d82f82b9aeb128d287f2";
+    return "043039bf6ff80e5c7934062c274c6649";
   }
 
   static const char* value(const ::ur5e_control::Plan_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x294113bb7631d82fULL;
-  static const uint64_t static_value2 = 0x82b9aeb128d287f2ULL;
+  static const uint64_t static_value1 = 0x043039bf6ff80e5cULL;
+  static const uint64_t static_value2 = 0x7934062c274c6649ULL;
 };
 
 template<class ContainerAllocator>
@@ -147,7 +154,8 @@ struct Definition< ::ur5e_control::Plan_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "geometry_msgs/Twist[] point\n"
+    return "geometry_msgs/Twist[] points\n"
+"std_msgs/UInt8[] modes\n"
 "\n"
 "================================================================================\n"
 "MSG: geometry_msgs/Twist\n"
@@ -167,6 +175,9 @@ struct Definition< ::ur5e_control::Plan_<ContainerAllocator> >
 "float64 x\n"
 "float64 y\n"
 "float64 z\n"
+"================================================================================\n"
+"MSG: std_msgs/UInt8\n"
+"uint8 data\n"
 ;
   }
 
@@ -185,7 +196,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.point);
+      stream.next(m.points);
+      stream.next(m.modes);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -204,13 +216,21 @@ struct Printer< ::ur5e_control::Plan_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ur5e_control::Plan_<ContainerAllocator>& v)
   {
-    s << indent << "point[]" << std::endl;
-    for (size_t i = 0; i < v.point.size(); ++i)
+    s << indent << "points[]" << std::endl;
+    for (size_t i = 0; i < v.points.size(); ++i)
     {
-      s << indent << "  point[" << i << "]: ";
+      s << indent << "  points[" << i << "]: ";
       s << std::endl;
       s << indent;
-      Printer< ::geometry_msgs::Twist_<ContainerAllocator> >::stream(s, indent + "    ", v.point[i]);
+      Printer< ::geometry_msgs::Twist_<ContainerAllocator> >::stream(s, indent + "    ", v.points[i]);
+    }
+    s << indent << "modes[]" << std::endl;
+    for (size_t i = 0; i < v.modes.size(); ++i)
+    {
+      s << indent << "  modes[" << i << "]: ";
+      s << std::endl;
+      s << indent;
+      Printer< ::std_msgs::UInt8_<ContainerAllocator> >::stream(s, indent + "    ", v.modes[i]);
     }
   }
 };

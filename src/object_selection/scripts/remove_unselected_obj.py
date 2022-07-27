@@ -56,8 +56,10 @@ def main():
 
 			blank_image = np.zeros((720,1280), np.uint8)
 
+			shrink = round(rad_sel * .75)
+
 			center = (x_sel + left, y_sel)
-			axes = (rad_sel, rad_sel)
+			axes = (shrink, shrink)
 			angle = 0
 			color = (255,255,255)
 			thickness = -1

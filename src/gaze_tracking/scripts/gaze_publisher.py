@@ -14,9 +14,9 @@ def get_gaze():
     rate = rospy.Rate(58)  # 10hz
     msg = gazedata()
 
-    s = server_connection('192.168.56.101', 4242)
+    s = server_connection('192.168.56.2', 4242)
     request_gaze_data(s)
-    ignore_x_msgs(s, 5)
+    ignore_x_msgs(s, 10)
 
     while not rospy.is_shutdown():
         receive_gaze_data(s)

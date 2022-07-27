@@ -7,12 +7,14 @@ import genpy
 import struct
 
 import geometry_msgs.msg
+import std_msgs.msg
 
 class Plan(genpy.Message):
-  _md5sum = "294113bb7631d82f82b9aeb128d287f2"
+  _md5sum = "043039bf6ff80e5c7934062c274c6649"
   _type = "ur5e_control/Plan"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """geometry_msgs/Twist[] point
+  _full_text = """geometry_msgs/Twist[] points
+std_msgs/UInt8[] modes
 
 ================================================================================
 MSG: geometry_msgs/Twist
@@ -31,9 +33,13 @@ MSG: geometry_msgs/Vector3
 
 float64 x
 float64 y
-float64 z"""
-  __slots__ = ['point']
-  _slot_types = ['geometry_msgs/Twist[]']
+float64 z
+================================================================================
+MSG: std_msgs/UInt8
+uint8 data
+"""
+  __slots__ = ['points','modes']
+  _slot_types = ['geometry_msgs/Twist[]','std_msgs/UInt8[]']
 
   def __init__(self, *args, **kwds):
     """
@@ -43,7 +49,7 @@ float64 z"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       point
+       points,modes
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -52,10 +58,13 @@ float64 z"""
     if args or kwds:
       super(Plan, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.point is None:
-        self.point = []
+      if self.points is None:
+        self.points = []
+      if self.modes is None:
+        self.modes = []
     else:
-      self.point = []
+      self.points = []
+      self.modes = []
 
   def _get_types(self):
     """
@@ -69,15 +78,20 @@ float64 z"""
     :param buff: buffer, ``StringIO``
     """
     try:
-      length = len(self.point)
+      length = len(self.points)
       buff.write(_struct_I.pack(length))
-      for val1 in self.point:
+      for val1 in self.points:
         _v1 = val1.linear
         _x = _v1
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
         _v2 = val1.angular
         _x = _v2
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
+      length = len(self.modes)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.modes:
+        _x = val1.data
+        buff.write(_get_struct_B().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -89,13 +103,15 @@ float64 z"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.point is None:
-        self.point = None
+      if self.points is None:
+        self.points = None
+      if self.modes is None:
+        self.modes = None
       end = 0
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
-      self.point = []
+      self.points = []
       for i in range(0, length):
         val1 = geometry_msgs.msg.Twist()
         _v3 = val1.linear
@@ -108,7 +124,17 @@ float64 z"""
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
-        self.point.append(val1)
+        self.points.append(val1)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      self.modes = []
+      for i in range(0, length):
+        val1 = std_msgs.msg.UInt8()
+        start = end
+        end += 1
+        (val1.data,) = _get_struct_B().unpack(str[start:end])
+        self.modes.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -121,15 +147,20 @@ float64 z"""
     :param numpy: numpy python module
     """
     try:
-      length = len(self.point)
+      length = len(self.points)
       buff.write(_struct_I.pack(length))
-      for val1 in self.point:
+      for val1 in self.points:
         _v5 = val1.linear
         _x = _v5
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
         _v6 = val1.angular
         _x = _v6
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
+      length = len(self.modes)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.modes:
+        _x = val1.data
+        buff.write(_get_struct_B().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -142,13 +173,15 @@ float64 z"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.point is None:
-        self.point = None
+      if self.points is None:
+        self.points = None
+      if self.modes is None:
+        self.modes = None
       end = 0
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
-      self.point = []
+      self.points = []
       for i in range(0, length):
         val1 = geometry_msgs.msg.Twist()
         _v7 = val1.linear
@@ -161,7 +194,17 @@ float64 z"""
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
-        self.point.append(val1)
+        self.points.append(val1)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      self.modes = []
+      for i in range(0, length):
+        val1 = std_msgs.msg.UInt8()
+        start = end
+        end += 1
+        (val1.data,) = _get_struct_B().unpack(str[start:end])
+        self.modes.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -176,3 +219,9 @@ def _get_struct_3d():
     if _struct_3d is None:
         _struct_3d = struct.Struct("<3d")
     return _struct_3d
+_struct_B = None
+def _get_struct_B():
+    global _struct_B
+    if _struct_B is None:
+        _struct_B = struct.Struct("<B")
+    return _struct_B

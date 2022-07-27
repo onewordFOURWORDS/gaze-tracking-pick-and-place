@@ -12,6 +12,7 @@ const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
 let geometry_msgs = _finder('geometry_msgs');
+let std_msgs = _finder('std_msgs');
 
 //-----------------------------------------------------------
 
@@ -19,25 +20,38 @@ class Plan {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.point = null;
+      this.points = null;
+      this.modes = null;
     }
     else {
-      if (initObj.hasOwnProperty('point')) {
-        this.point = initObj.point
+      if (initObj.hasOwnProperty('points')) {
+        this.points = initObj.points
       }
       else {
-        this.point = [];
+        this.points = [];
+      }
+      if (initObj.hasOwnProperty('modes')) {
+        this.modes = initObj.modes
+      }
+      else {
+        this.modes = [];
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type Plan
-    // Serialize message field [point]
-    // Serialize the length for message field [point]
-    bufferOffset = _serializer.uint32(obj.point.length, buffer, bufferOffset);
-    obj.point.forEach((val) => {
+    // Serialize message field [points]
+    // Serialize the length for message field [points]
+    bufferOffset = _serializer.uint32(obj.points.length, buffer, bufferOffset);
+    obj.points.forEach((val) => {
       bufferOffset = geometry_msgs.msg.Twist.serialize(val, buffer, bufferOffset);
+    });
+    // Serialize message field [modes]
+    // Serialize the length for message field [modes]
+    bufferOffset = _serializer.uint32(obj.modes.length, buffer, bufferOffset);
+    obj.modes.forEach((val) => {
+      bufferOffset = std_msgs.msg.UInt8.serialize(val, buffer, bufferOffset);
     });
     return bufferOffset;
   }
@@ -46,20 +60,28 @@ class Plan {
     //deserializes a message object of type Plan
     let len;
     let data = new Plan(null);
-    // Deserialize message field [point]
-    // Deserialize array length for message field [point]
+    // Deserialize message field [points]
+    // Deserialize array length for message field [points]
     len = _deserializer.uint32(buffer, bufferOffset);
-    data.point = new Array(len);
+    data.points = new Array(len);
     for (let i = 0; i < len; ++i) {
-      data.point[i] = geometry_msgs.msg.Twist.deserialize(buffer, bufferOffset)
+      data.points[i] = geometry_msgs.msg.Twist.deserialize(buffer, bufferOffset)
+    }
+    // Deserialize message field [modes]
+    // Deserialize array length for message field [modes]
+    len = _deserializer.uint32(buffer, bufferOffset);
+    data.modes = new Array(len);
+    for (let i = 0; i < len; ++i) {
+      data.modes[i] = std_msgs.msg.UInt8.deserialize(buffer, bufferOffset)
     }
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
-    length += 48 * object.point.length;
-    return length + 4;
+    length += 48 * object.points.length;
+    length += object.modes.length;
+    return length + 8;
   }
 
   static datatype() {
@@ -69,13 +91,14 @@ class Plan {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '294113bb7631d82f82b9aeb128d287f2';
+    return '043039bf6ff80e5c7934062c274c6649';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    geometry_msgs/Twist[] point
+    geometry_msgs/Twist[] points
+    std_msgs/UInt8[] modes
     
     ================================================================================
     MSG: geometry_msgs/Twist
@@ -95,6 +118,10 @@ class Plan {
     float64 x
     float64 y
     float64 z
+    ================================================================================
+    MSG: std_msgs/UInt8
+    uint8 data
+    
     `;
   }
 
@@ -104,14 +131,24 @@ class Plan {
       msg = {};
     }
     const resolved = new Plan(null);
-    if (msg.point !== undefined) {
-      resolved.point = new Array(msg.point.length);
-      for (let i = 0; i < resolved.point.length; ++i) {
-        resolved.point[i] = geometry_msgs.msg.Twist.Resolve(msg.point[i]);
+    if (msg.points !== undefined) {
+      resolved.points = new Array(msg.points.length);
+      for (let i = 0; i < resolved.points.length; ++i) {
+        resolved.points[i] = geometry_msgs.msg.Twist.Resolve(msg.points[i]);
       }
     }
     else {
-      resolved.point = []
+      resolved.points = []
+    }
+
+    if (msg.modes !== undefined) {
+      resolved.modes = new Array(msg.modes.length);
+      for (let i = 0; i < resolved.modes.length; ++i) {
+        resolved.modes[i] = std_msgs.msg.UInt8.Resolve(msg.modes[i]);
+      }
+    }
+    else {
+      resolved.modes = []
     }
 
     return resolved;

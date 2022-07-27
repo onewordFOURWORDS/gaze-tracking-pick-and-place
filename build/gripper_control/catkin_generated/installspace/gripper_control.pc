@@ -1,0 +1,8 @@
+prefix=/home/tim/catkin_ws/install
+
+Name: gripper_control
+Description: Description of gripper_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

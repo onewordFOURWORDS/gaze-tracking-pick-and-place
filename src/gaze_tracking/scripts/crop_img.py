@@ -52,6 +52,9 @@ def main():
 			# maths stuff for the actual cropping bit
 			remove = width-width_aspect
 			# remove equal amounts from left and right
+			left = remove*0
+			right = width - remove*0
+			
 			left = remove//4
 			right = width - remove//4
 

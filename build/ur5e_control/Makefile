@@ -348,6 +348,21 @@ ur5e_control_generate_messages/fast:
 .PHONY : ur5e_control_generate_messages/fast
 
 # Convenience name for target.
+ur5e_control/CMakeFiles/task_space_traj_gripper.dir/rule:
+	cd /home/tim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5e_control/CMakeFiles/task_space_traj_gripper.dir/rule
+.PHONY : ur5e_control/CMakeFiles/task_space_traj_gripper.dir/rule
+
+# Convenience name for target.
+task_space_traj_gripper: ur5e_control/CMakeFiles/task_space_traj_gripper.dir/rule
+
+.PHONY : task_space_traj_gripper
+
+# fast build rule for target.
+task_space_traj_gripper/fast:
+	cd /home/tim/catkin_ws/build && $(MAKE) -f ur5e_control/CMakeFiles/task_space_traj_gripper.dir/build.make ur5e_control/CMakeFiles/task_space_traj_gripper.dir/build
+.PHONY : task_space_traj_gripper/fast
+
+# Convenience name for target.
 ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan.dir/rule:
 	cd /home/tim/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan.dir/rule
 .PHONY : ur5e_control/CMakeFiles/_ur5e_control_generate_messages_check_deps_Plan.dir/rule
@@ -479,6 +494,33 @@ src/task_space_traj.cpp.s:
 	cd /home/tim/catkin_ws/build && $(MAKE) -f ur5e_control/CMakeFiles/task_space_traj.dir/build.make ur5e_control/CMakeFiles/task_space_traj.dir/src/task_space_traj.cpp.s
 .PHONY : src/task_space_traj.cpp.s
 
+src/task_space_traj_gripper.o: src/task_space_traj_gripper.cpp.o
+
+.PHONY : src/task_space_traj_gripper.o
+
+# target to build an object file
+src/task_space_traj_gripper.cpp.o:
+	cd /home/tim/catkin_ws/build && $(MAKE) -f ur5e_control/CMakeFiles/task_space_traj_gripper.dir/build.make ur5e_control/CMakeFiles/task_space_traj_gripper.dir/src/task_space_traj_gripper.cpp.o
+.PHONY : src/task_space_traj_gripper.cpp.o
+
+src/task_space_traj_gripper.i: src/task_space_traj_gripper.cpp.i
+
+.PHONY : src/task_space_traj_gripper.i
+
+# target to preprocess a source file
+src/task_space_traj_gripper.cpp.i:
+	cd /home/tim/catkin_ws/build && $(MAKE) -f ur5e_control/CMakeFiles/task_space_traj_gripper.dir/build.make ur5e_control/CMakeFiles/task_space_traj_gripper.dir/src/task_space_traj_gripper.cpp.i
+.PHONY : src/task_space_traj_gripper.cpp.i
+
+src/task_space_traj_gripper.s: src/task_space_traj_gripper.cpp.s
+
+.PHONY : src/task_space_traj_gripper.s
+
+# target to generate assembly for a file
+src/task_space_traj_gripper.cpp.s:
+	cd /home/tim/catkin_ws/build && $(MAKE) -f ur5e_control/CMakeFiles/task_space_traj_gripper.dir/build.make ur5e_control/CMakeFiles/task_space_traj_gripper.dir/src/task_space_traj_gripper.cpp.s
+.PHONY : src/task_space_traj_gripper.cpp.s
+
 src/ur5e_controller.o: src/ur5e_controller.cpp.o
 
 .PHONY : src/ur5e_controller.o
@@ -529,6 +571,7 @@ help:
 	@echo "... trajectory_msgs_generate_messages_py"
 	@echo "... ur5e_control_genpy"
 	@echo "... ur5e_control_generate_messages"
+	@echo "... task_space_traj_gripper"
 	@echo "... _ur5e_control_generate_messages_check_deps_Plan"
 	@echo "... test"
 	@echo "... trajectory_msgs_generate_messages_lisp"
@@ -541,6 +584,9 @@ help:
 	@echo "... src/task_space_traj.o"
 	@echo "... src/task_space_traj.i"
 	@echo "... src/task_space_traj.s"
+	@echo "... src/task_space_traj_gripper.o"
+	@echo "... src/task_space_traj_gripper.i"
+	@echo "... src/task_space_traj_gripper.s"
 	@echo "... src/ur5e_controller.o"
 	@echo "... src/ur5e_controller.i"
 	@echo "... src/ur5e_controller.s"
