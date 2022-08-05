@@ -7,3 +7,4 @@ UNCW Robotics Lab
 - UR5E Robotic Arm
 - Ubuntu 20.04
 - Intel Realsense D415
+- Gazepoint GP3
