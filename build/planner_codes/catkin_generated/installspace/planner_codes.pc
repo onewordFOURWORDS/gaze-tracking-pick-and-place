@@ -1,0 +1,8 @@
+prefix=/home/tim/catkin_ws/install
+
+Name: planner_codes
+Description: Description of planner_codes
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -51,6 +51,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   gazedata.msg
+  Blob_Params.msg
+  Blobs.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -68,10 +70,9 @@ add_message_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
+generate_messages( DEPENDENCIES
   std_msgs
-)
+  )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -107,6 +108,7 @@ catkin_package(
 #  LIBRARIES gaze_tracking
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+CATKIN_DEPENDS message_runtime
 )
 
 ###########

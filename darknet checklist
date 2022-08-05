@@ -1,8 +1,0 @@
-roscore
-roslaunch realsense2_camera rs_rgbd.roslaunch
-roslaunch darknet_ros yolo_v3.launch
-rosrun gaze_tracking crop_img.py
-rosrun gaze_tracking gaze_publisher.py
-rosrun gaze_tracking gaze_point.py
-rosrun object_selection sel_obj_darknet.py
-rosrun image_view image_view image:=/gaze_location_img

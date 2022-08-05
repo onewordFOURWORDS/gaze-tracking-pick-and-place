@@ -5,8 +5,8 @@ import cv2 as cv
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 from gaze_tracking.msg import gazedata
-from Robotics_Report2.msg import Blobs
-from Robotics_Report2.msg import Blob_Params
+from gaze_tracking.msg import Blobs
+from gaze_tracking.msg import Blob_Params
 
 
 img_received = False
@@ -60,7 +60,7 @@ def main():
 	# 2 = object detection image
 
 	# define the node and subcribers and publishers
-	rospy.init_node('gaze_point', anonymous = True)
+	rospy.init_node('gaze_point_blobs', anonymous = True)
 	# define a subscriber to ream images
 	img_sub = rospy.Subscriber("/cropped_img", Image, get_image)
 	# define a subscriber to get gaze data
@@ -70,7 +70,7 @@ def main():
 	img_pub = rospy.Publisher('/gaze_location_img', Image, queue_size = 1)
 
 	# set the loop frequenccropped_img
-	rate = rospy.Rate(10)
+	rate = rospy.Rate(30)
 	while not rospy.is_shutdown():
 		#print("Image Received?", img_received, "Data Received?", data_received)
 		# make sure we process if the camera has started streaming images
@@ -94,12 +94,21 @@ def main():
 				marked_image = cv.ellipse(rgb_img, center, axes, angle, 0, 360, red, thickness)
 
 
-			if object_selected:
-				green = (0, 255, 0)
-				center = (x_sel, y_sel)
-				axes = (rad_sel, rad_sel)
+			if object_selected:	# Draw a circle on the image based on the gaze location
+				green = (0, 200, 0) # color of the circle
+				center = (int(900*POGX), int(720*POGY)) # center circle on gaze spot
+				axes = (4,4) # circle size
+				angle = 0 # angle of the ellipse doesnt matter since this uses a circle
+				thickness = -1 # line thickness of the cirlce
+				# cv.ellipse(img, center, axes, angle, a0, a1, color, thickness)
+				marked_image = cv.ellipse(rgb_img, center, axes, angle, 0, 360, green, thickness)
+
+			for blob in blob_list:
+				center = (blob.x_coord, blob.y_coord)
+				red = (255, 0, 0)
+				axes = (blob.radius, blob.radius)
 				angle = 0
-				thickness = -1
+				thickness = 2
 				marked_image = cv.ellipse(rgb_img, center, axes, angle, 0, 360, green, thickness)
 
 			# convert it to ros msg and publish it

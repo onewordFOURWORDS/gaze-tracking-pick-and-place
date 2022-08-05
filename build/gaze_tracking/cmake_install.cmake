@@ -38,7 +38,11 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gaze_tracking/msg" TYPE FILE FILES "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gaze_tracking/msg" TYPE FILE FILES
+    "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
+    "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
+    "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
+    )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "gaze_tracking: 1 messages, 0 services")
+message(STATUS "gaze_tracking: 3 messages, 0 services")
 
 set(MSG_I_FLAGS "-Igaze_tracking:/home/tim/catkin_ws/src/gaze_tracking/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -22,6 +22,16 @@ add_custom_target(_gaze_tracking_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "gaze_tracking" "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg" ""
 )
 
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" NAME_WE)
+add_custom_target(_gaze_tracking_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "gaze_tracking" "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" ""
+)
+
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" NAME_WE)
+add_custom_target(_gaze_tracking_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "gaze_tracking" "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" "gaze_tracking/Blob_Params"
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -32,6 +42,18 @@ _generate_msg_cpp(gaze_tracking
   "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_cpp(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_cpp(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
+  "${MSG_I_FLAGS}"
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/gaze_tracking
 )
 
@@ -51,6 +73,10 @@ add_dependencies(gaze_tracking_generate_messages gaze_tracking_generate_messages
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg" NAME_WE)
 add_dependencies(gaze_tracking_generate_messages_cpp _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_cpp _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_cpp _gaze_tracking_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(gaze_tracking_gencpp)
@@ -65,6 +91,18 @@ _generate_msg_eus(gaze_tracking
   "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_eus(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_eus(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
+  "${MSG_I_FLAGS}"
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/gaze_tracking
 )
 
@@ -84,6 +122,10 @@ add_dependencies(gaze_tracking_generate_messages gaze_tracking_generate_messages
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg" NAME_WE)
 add_dependencies(gaze_tracking_generate_messages_eus _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_eus _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_eus _gaze_tracking_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(gaze_tracking_geneus)
@@ -98,6 +140,18 @@ _generate_msg_lisp(gaze_tracking
   "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_lisp(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_lisp(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
+  "${MSG_I_FLAGS}"
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/gaze_tracking
 )
 
@@ -117,6 +171,10 @@ add_dependencies(gaze_tracking_generate_messages gaze_tracking_generate_messages
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg" NAME_WE)
 add_dependencies(gaze_tracking_generate_messages_lisp _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_lisp _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_lisp _gaze_tracking_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(gaze_tracking_genlisp)
@@ -131,6 +189,18 @@ _generate_msg_nodejs(gaze_tracking
   "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_nodejs(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_nodejs(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
+  "${MSG_I_FLAGS}"
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/gaze_tracking
 )
 
@@ -150,6 +220,10 @@ add_dependencies(gaze_tracking_generate_messages gaze_tracking_generate_messages
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg" NAME_WE)
 add_dependencies(gaze_tracking_generate_messages_nodejs _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_nodejs _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_nodejs _gaze_tracking_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(gaze_tracking_gennodejs)
@@ -164,6 +238,18 @@ _generate_msg_py(gaze_tracking
   "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_py(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/gaze_tracking
+)
+_generate_msg_py(gaze_tracking
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
+  "${MSG_I_FLAGS}"
+  "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/gaze_tracking
 )
 
@@ -182,6 +268,10 @@ add_dependencies(gaze_tracking_generate_messages gaze_tracking_generate_messages
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_py _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg" NAME_WE)
+add_dependencies(gaze_tracking_generate_messages_py _gaze_tracking_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg" NAME_WE)
 add_dependencies(gaze_tracking_generate_messages_py _gaze_tracking_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

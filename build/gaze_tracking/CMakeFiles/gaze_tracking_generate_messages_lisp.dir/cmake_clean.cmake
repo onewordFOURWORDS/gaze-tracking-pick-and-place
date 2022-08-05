@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "/home/tim/catkin_ws/devel/share/common-lisp/ros/gaze_tracking/msg/Blob_Params.lisp"
+  "/home/tim/catkin_ws/devel/share/common-lisp/ros/gaze_tracking/msg/Blobs.lisp"
   "/home/tim/catkin_ws/devel/share/common-lisp/ros/gaze_tracking/msg/gazedata.lisp"
   "CMakeFiles/gaze_tracking_generate_messages_lisp"
 )

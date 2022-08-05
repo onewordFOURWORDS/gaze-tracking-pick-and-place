@@ -5,4 +5,4 @@ Description: Description of gaze_tracking
 Version: 0.0.0
 Cflags: -I/home/tim/catkin_ws/devel/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: message_runtime

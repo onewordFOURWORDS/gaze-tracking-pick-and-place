@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "/home/tim/catkin_ws/devel/share/roseus/ros/gaze_tracking/manifest.l"
+  "/home/tim/catkin_ws/devel/share/roseus/ros/gaze_tracking/msg/Blob_Params.l"
+  "/home/tim/catkin_ws/devel/share/roseus/ros/gaze_tracking/msg/Blobs.l"
   "/home/tim/catkin_ws/devel/share/roseus/ros/gaze_tracking/msg/gazedata.l"
   "CMakeFiles/gaze_tracking_generate_messages_eus"
 )

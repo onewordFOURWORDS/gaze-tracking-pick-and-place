@@ -5,7 +5,7 @@ import cv2 as cv
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 from sensor_msgs.msg import CameraInfo
-from Robotics_Report2.msg import Blob_Params
+from gaze_tracking.msg import Blob_Params
 
 object_selected = False
 
@@ -18,7 +18,7 @@ def get_params(data):
 	global object_selected
 	x_sel = data.x_coord
 	y_sel = data.y_coord
-	rad_sel = data.radius
+	rad_sel = data.radiusro
 	id_sel	= data.id
 	object_selected = True
 
@@ -31,7 +31,7 @@ def get_info(d):
 
 
 def main():
-	rospy.init_node('sel_obj', anonymous = True)
+	rospy.init_node('remove_unselected_obj', anonymous = True)
 	# subscribe to the selected object params
 	selblob_sub = rospy.Subscriber("/selected_obj", Blob_Params, get_params)
 	# publisher for the blocked image

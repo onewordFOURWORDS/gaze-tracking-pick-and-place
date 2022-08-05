@@ -3,8 +3,8 @@ import rospy
 import numpy as np
 import cv2 as cv
 from gaze_tracking.msg import gazedata
-from Robotics_Report2.msg import Blob_Params
-from Robotics_Report2.msg import Blobs
+from gaze_tracking.msg import Blob_Params
+from gaze_tracking.msg import Blobs
 
 gaze_received = False
 blob_received = False
@@ -31,7 +31,7 @@ def get_blobs(data):
     blob_received = True
 
 def main():
-    rospy.init_node('sel_obj', anonymous = True)
+    rospy.init_node('sel_obj_blobs', anonymous = True)
     # initilize a subscriber to get darknet bounding boxes
     gaze_sub = rospy.Subscriber("/gaze_publisher", gazedata, get_gaze)
     sel_areas = rospy.Subscriber("/blob_data", Blobs, get_blobs)

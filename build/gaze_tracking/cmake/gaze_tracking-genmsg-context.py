@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg"
+messages_str = "/home/tim/catkin_ws/src/gaze_tracking/msg/gazedata.msg;/home/tim/catkin_ws/src/gaze_tracking/msg/Blob_Params.msg;/home/tim/catkin_ws/src/gaze_tracking/msg/Blobs.msg"
 services_str = ""
 pkg_name = "gaze_tracking"
 dependencies_str = "std_msgs"
